@@ -1,4 +1,5 @@
-NutraMeals React App
+**NutraMeals React App**
+
 How to run project locally
 1)	Clone the repository 
   https://github.com/dakshrawat1109/Computer-Science-Project-1.git 
