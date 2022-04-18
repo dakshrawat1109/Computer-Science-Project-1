@@ -29,19 +29,20 @@ class Header extends Component {
 
 	render() {
 		return (
-			<header id="header" class="fixed-top d-flex align-items-cente">
-                    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-                        <a href="index.html"><img class="logoNutraMeals"    src={Logo} alt=""></img></a>
-                        <h1 class="logo me-auto me-lg-0"></h1>
+			<header id="header" className="fixed-top d-flex align-items-cente">
+                    <div className="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+                        <a href="index.html"><img className="logoNutraMeals" src={Logo} alt=""></img></a>
+                        <h1 className="logo me-auto me-lg-0"></h1>
                         {/*Uncomment below if you prefer to use an image logo
-                        <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>*/}
+                        <a href="index.html" className="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" className="img-fluid"></a>*/}
 
-                        <nav id="navbar" class="navbar order-3">
+                        <nav id="navbar" className="navbar order-3">
                             <ul>
-                            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                            <li><a class="nav-link scrollto" href="#about">About</a></li>
-                            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                            <li><button class="book-a-table-btn scrollto">Login</button></li>
+                            <li><a className="nav-link scrollto active" href="#hero">Home</a></li>
+                            <li><a className="nav-link scrollto" href="#about">About</a></li>
+                            <li><a className="nav-link scrollto" href="#contact">Contact</a></li>
+                            <li><button className="book-a-table-btn scrollto">Login</button>
+                            </li>
                             </ul>
                         </nav>
                         
@@ -52,58 +53,58 @@ class Header extends Component {
                                onStateChange={(state) => this.handleStateChange(state)}
                         >
                             <div>
-                                <div class="image">
-                                    <img class="personImage" alt="" role="presentation" src="https://d1w2poirtb3as9.cloudfront.net/default.jpeg?Expires=1647860504&amp;Signature=cmvfZYok8E3glBGSAvswJ9k6NPE5s9Boaq2RTNXGWApq8HyS7z3NTPj1f8AR4ew5HqaEn6eTuwER9tfMOU-khaHB8nEGRVT47SAduduDRgD1bkMd3cdSgrTrgWsPZxVVQyU6M0kOl7zZQi3pAry6uXCkeVteUzLWYwSa8ChZ7kCgaRRvETtWG5ksWu6wAtgBpDPlPteQ90wfKlTcWUjLOjm2PYIYkLy0hr5cubTYF4yX9siJyECw1bHuHF00CIVVWxedMKCnExM-9oAybM0C00UlGFJ05ddIvxD0KLwJrigsNPc08x3~17kjk3kgqz~wXklemDhUxBEm6q2ef2tTVQ__&amp;Key-Pair-Id=APKAJSDH2OZQQSA64LQQ"/>
-                                    <div class="spacer"></div>
-                                    <div class="spacer"></div>
+                                <div className="image">
+                                    <img className="personImage" alt="" role="presentation" src="https://d1w2poirtb3as9.cloudfront.net/default.jpeg?Expires=1647860504&amp;Signature=cmvfZYok8E3glBGSAvswJ9k6NPE5s9Boaq2RTNXGWApq8HyS7z3NTPj1f8AR4ew5HqaEn6eTuwER9tfMOU-khaHB8nEGRVT47SAduduDRgD1bkMd3cdSgrTrgWsPZxVVQyU6M0kOl7zZQi3pAry6uXCkeVteUzLWYwSa8ChZ7kCgaRRvETtWG5ksWu6wAtgBpDPlPteQ90wfKlTcWUjLOjm2PYIYkLy0hr5cubTYF4yX9siJyECw1bHuHF00CIVVWxedMKCnExM-9oAybM0C00UlGFJ05ddIvxD0KLwJrigsNPc08x3~17kjk3kgqz~wXklemDhUxBEm6q2ef2tTVQ__&amp;Key-Pair-Id=APKAJSDH2OZQQSA64LQQ"/>
+                                    <div className="spacer"></div>
+                                    <div className="spacer"></div>
                                     <div>
-                                        <div class="personName">John Doe</div>
+                                        <div className="personName">John Doe</div>
                                         <a href="#" style={{textDecoration: "none"}}>View account</a>
                                     </div>
                                 </div>    
                             </div>
-                            <a href="#" class="nav-link">
+                            <a href="#" className="nav-link">
 
-                            <hr class="lineBreak"></hr>
-                                <div class="menuIcons">
+                            <hr className="lineBreak"></hr>
+                                <div className="menuIcons">
                                     <img src={Orders} className="iconImage"></img>
                                 </div>
-                                <div class="menuText">Orders</div>
+                                <div className="menuText">Orders</div>
                             </a>
-                            <a href="#" class="nav-link">
-                                <div class="menuIcons">
+                            <a href="#" className="nav-link">
+                                <div className="menuIcons">
                                     <img src={Wallet} className="iconImage"></img>
                                 </div>
-                                <div class="menuText">Wallet</div>
+                                <div className="menuText">Wallet</div>
                             </a>
-                            <a href="#" class="nav-link">
-                                <div class="menuIcons">
+                            <a href="#" className="nav-link">
+                                <div className="menuIcons">
                                     <img src={Offers} className="iconImage"></img>
                                 </div>
-                                <div class="menuText">Offers</div>
+                                <div className="menuText">Offers</div>
                             </a>
-                            <a href="#" class="nav-link">
-                                <div class="menuIcons">
+                            <a href="#" className="nav-link">
+                                <div className="menuIcons">
                                     <img src={Help} className="iconImage"></img>
                                 </div>
-                                <div class="menuText">Help</div>
+                                <div className="menuText">Help</div>
                             </a>
-                            <a href="#" class="nav-link">
-                                <div class="menuOthers">Sign out
+                            <a href="#" className="nav-link">
+                                <div className="menuOthers">Sign out
                                 </div>
 
-                            <hr class="lineBreak"></hr>
+                            <hr className="lineBreak"></hr>
                             </a>
-                            <a href="#" class="nav-link">
-                                <div class="menuList">Create Business Account
+                            <a href="#" className="nav-link">
+                                <div className="menuList">Create Business Account
                                 </div>
                             </a>
-                            <a href="#" class="nav-link">
-                                <div class="menuList">Add your restaurant
+                            <a href="#" className="nav-link">
+                                <div className="menuList">Add your restaurant
                                 </div>
                             </a>
-                            <a href="#" class="nav-link">
-                                <div class="menuList">Sign up to deliver
+                            <a href="#" className="nav-link">
+                                <div className="menuList">Sign up to deliver
                                 </div>
                             </a>
                         </Menu>

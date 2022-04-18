@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import {NavLink} from "react-router-dom";
+
 
 class Home extends Component{
     render(){
@@ -11,11 +13,11 @@ class Home extends Component{
             top: "40%",
             transform: "translate(-50%, -50%)",
           }}
-          class="container position-relative text-center text-lg-center"
+          className="container position-relative text-center text-lg-center"
           // data-aos="zoom-out"
           data-aos-delay="100"
         >
-          <div class="col-lg-8 font-link">
+          <div className="col-lg-8 font-link">
             <h1
               style={{
                 fontFamily: "Rancho",
@@ -44,20 +46,22 @@ class Home extends Component{
               }}
               role="combobox"
               id="mySearch"
-              onkeyup="myFunction()"
               placeholder="Search for restaurant"
               title="Type in a category"
             ></input>
-            <div class="btns">
-              <a href="#menu" class="btn-menu animated fadeInUp scrollto">
-                Menu
-              </a>
-              <a
-                href="#book-a-table"
-                class="btn-book animated fadeInUp scrollto"
-              >
-                Restaurants
-              </a>
+            <div className="btns">
+              <NavLink className="btn-book animated fadeInUp scrollto"
+                    to={{
+                      pathname: "/login",
+                    }}>
+                Login
+              </NavLink>
+              <NavLink className="btn-book animated fadeInUp scrollto"
+                    to={{
+                      pathname: "/register",
+                    }}>
+                Register
+              </NavLink>
             </div>
           </div>
         </div>
