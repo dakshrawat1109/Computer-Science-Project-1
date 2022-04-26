@@ -1,8 +1,23 @@
 import React, {Component} from "react";
-import {NavLink} from "react-router-dom";
-
+import {NavLink,Link} from "react-router-dom";
+import {IconButton,InputAdornment,TextField} from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
 class Home extends Component{
+    state ={
+      restaurantDetails :{
+        restaurantName : "",
+      },
+    }
+
+    changeHandlerRestaurantName = (event) => {
+      event.persist();
+  
+      this.setState((prevState) => ({
+        restaurantDetails: {...prevState.restaurantDetails, restaurantName: event.target.value},
+      }));
+    };
+
     render(){
         return(
             <section id="hero">
@@ -37,30 +52,43 @@ class Home extends Component{
             >
               Your Healthy Food Delivery Partner
             </h2>
-            <input
+
+            <TextField
               style={{
                 width: "600px",
                 height: "50px",
-                borderRadius: "50px",
+                borderRadius: "20px",
                 textAlign: "center",
+                background : "white",
+                textDecoration : "none",
               }}
-              role="combobox"
+              onChange={(value) => this.changeHandlerRestaurantName(value)}
               id="mySearch"
               placeholder="Search for restaurant"
               title="Type in a category"
-            ></input>
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton component={Link} to={{
+                      pathname: "/searchRestaurant",
+                      state: {
+                        restaurantDetails:{
+                          restaurantName : this.state.restaurantDetails.restaurantName,
+                        },
+                    },
+                    }}>
+                      <SearchIcon/>
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            ></TextField>
             <div className="btns">
               <NavLink className="btn-book animated fadeInUp scrollto"
                     to={{
-                      pathname: "/login",
+                      pathname: "/listRestaurants",
                     }}>
-                Login
-              </NavLink>
-              <NavLink className="btn-book animated fadeInUp scrollto"
-                    to={{
-                      pathname: "/register",
-                    }}>
-                Register
+                List All Restaurants
               </NavLink>
             </div>
           </div>

@@ -20,6 +20,9 @@ public class MainApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/login").allowedOrigins("http://localhost:3000");
 				registry.addMapping("/register").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/restaurantList").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/searchRestaurant").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/addRestaurant").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}

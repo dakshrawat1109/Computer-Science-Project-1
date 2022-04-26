@@ -8,7 +8,6 @@ import './assets/vendor/bootstrap-icons/bootstrap-icons.css';
 import './assets/vendor/boxicons/css/boxicons.min.css';
 import './assets/vendor/glightbox/css/glightbox.min.css';
 import './assets/vendor/swiper/swiper-bundle.min.css';
-import Header from './components/header';
 import RouteJS from './components/route';
 
 export default class extends Component {
@@ -29,7 +28,6 @@ export default class extends Component {
               Learn React
             </a>
       </header>*/}
-            <Header/>
             <RouteJS/>
         </div>
       );

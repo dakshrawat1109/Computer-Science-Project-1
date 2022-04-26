@@ -10,7 +10,14 @@ import {
 import axios from "axios";
 import './register.css';
 
+const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
+  
+const validPhoneRegex = RegExp(/^[0-9\b]+$/);
+
 class Register extends Component{
+    
     state = {
         loginDetails:{
             userName : "",
@@ -25,15 +32,29 @@ class Register extends Component{
             state : "",
             city : "",
         },
+        errors: {
+            userName: "",
+            password: "",
+            email: "",
+            phone: "",
+            addressLine1: "",
+            addressLine2: "",
+            zipCode: "",
+            state: "",
+            city: "",
+        },
         redirect: false,
     };
+
     onRegister = () => {
         var loginDetails = this.state.loginDetails;
         axios
         .post(" http://localhost:8080/register", loginDetails
         )
         .then((response,body) => {
-            console.log(response);
+            if(response.status===200 && response.data === "User inserted successfully"){
+                this.props.history.push("/");
+            }
         })
         .catch(function (error) {
             // handle error
@@ -46,6 +67,10 @@ class Register extends Component{
 	};
     changeHandlerUserName = (event) => {
 		event.persist();
+        let errors = this.state.errors;
+
+        errors.userName =
+        event.target.value.length < 5 ? "User Name must be at least 5 characters long!" : "";
 
 		this.setState((prevState) => ({
 			loginDetails: {...prevState.loginDetails, userName: event.target.value},
@@ -53,6 +78,11 @@ class Register extends Component{
 	};
     changeHandlerPassword = (event) => {
 		event.persist();
+
+        let errors = this.state.errors;
+
+        errors.password =
+            event.target.value.length < 8 ? "Password must be at least 8 characters long!" : "";
 
 		this.setState((prevState) => ({
 			loginDetails: {...prevState.loginDetails, password: event.target.value},
@@ -72,12 +102,19 @@ class Register extends Component{
 	};
 	changeHandlerEmail = (event) => {
 		event.persist();
+        let errors = this.state.errors;
+
+        errors.email = validEmailRegex.test(event.target.value) ? "" : "Email is not valid!";
 		this.setState((prevState) => ({
 			loginDetails: {...prevState.loginDetails, email: event.target.value},
 		}));
 	};
     changeHandlerPhone = (event) => {
 		event.persist();
+        let errors = this.state.errors;
+
+        errors.phone = validPhoneRegex.test(event.target.value) ? "" : "Phone is not valid!";
+
 		this.setState((prevState) => ({
 			loginDetails: {...prevState.loginDetails, phone: event.target.value},
 		}));
@@ -151,6 +188,9 @@ class Register extends Component{
                                                 onChange={(value) => this.changeHandlerUserName(value)}
                                             />
                                     </Grid>
+                                    {this.state.errors.userName.length > 0 && (
+                                        <span className="error">{this.state.errors.userName}</span>
+                                    )}
                                     <Grid item>
                                         <TextField
                                                 required
@@ -161,6 +201,9 @@ class Register extends Component{
                                                 onChange={(value) => this.changeHandlerPassword(value)}
                                             />
                                     </Grid>
+                                    {this.state.errors.password.length > 0 && (
+                                        <span className="error">{this.state.errors.password}</span>
+                                    )}
                                     <Grid item xs>
 									<TextField
 										required
@@ -191,6 +234,9 @@ class Register extends Component{
                                                 fullWidth
                                                 onChange={(value) => this.changeHandlerEmail(value)}
                                             />
+                                            {this.state.errors.email.length > 0 && (
+                                            <span className="error">{this.state.errors.email}</span>
+                                            )}
                                         </Grid>
                                         <Grid item sm>
                                             <TextField
@@ -198,9 +244,13 @@ class Register extends Component{
                                                 id="outlined-full-width"
                                                 label="Phone"
                                                 variant="outlined"
+                                                inputProps={{ maxLength: 10 }}
                                                 fullWidth
                                                 onChange={(value) => this.changeHandlerPhone(value)}
                                             />
+                                            {this.state.errors.phone.length > 0 && (
+                                            <span className="error">{this.state.errors.phone}</span>
+                                            )}
                                         </Grid>
                                     </Grid>
                                     <Grid container spacing={3} item>
@@ -251,9 +301,13 @@ class Register extends Component{
 										id="outlined-full-width"
 										label="Zip Code"
 										variant="outlined"
+                                        inputProps={{ maxLength: 5 }}
 										fullWidth
 										onChange={(value) => this.changeHandlerZip(value)}
 									/>
+                                    {this.state.errors.zipCode.length > 0 && (
+                                    <span className="error">{this.state.errors.zipCode}</span>
+                                    )}
 								</Grid>
                                     <Grid item>
                                         <Button
