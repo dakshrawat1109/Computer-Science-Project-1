@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {NavLink} from "react-router-dom";
 import Logo from '../assets/img/NutraMeals-removebg-preview (1).png';
 import Orders from '../assets/img/orders.png';
 import Offers from '../assets/img/offers.png';
@@ -32,7 +33,6 @@ class Header extends Component {
 			<header id="header" className="fixed-top d-flex align-items-cente">
                     <div className="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
                         <a href="index.html"><img className="logoNutraMeals" src={Logo} alt=""></img></a>
-                        <h1 className="logo me-auto me-lg-0"></h1>
                         {/*Uncomment below if you prefer to use an image logo
                         <a href="index.html" className="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" className="img-fluid"></a>*/}
 
@@ -41,7 +41,21 @@ class Header extends Component {
                             <li><a className="nav-link scrollto active" href="#hero">Home</a></li>
                             <li><a className="nav-link scrollto" href="#about">About</a></li>
                             <li><a className="nav-link scrollto" href="#contact">Contact</a></li>
-                            <li><button className="book-a-table-btn scrollto">Login</button>
+                            <li>
+                                <NavLink className="btn-bookH animated fadeInUp scrollto"
+                                    to={{
+                                    pathname: "/login",
+                                    }}>
+                                    Login
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink className="btn-bookH animated fadeInUp scrollto"
+                                            to={{
+                                            pathname: "/register",
+                                            }}>
+                                        Register
+                                </NavLink>
                             </li>
                             </ul>
                         </nav>
@@ -83,12 +97,15 @@ class Header extends Component {
                                 </div>
                                 <div className="menuText">Offers</div>
                             </a>
-                            <a href="#" className="nav-link">
+                            <NavLink className="nav-link"
+                                    to={{
+                                    pathname: "/help",
+                                    }}>
                                 <div className="menuIcons">
                                     <img src={Help} className="iconImage"></img>
                                 </div>
                                 <div className="menuText">Help</div>
-                            </a>
+                            </NavLink>
                             <a href="#" className="nav-link">
                                 <div className="menuOthers">Sign out
                                 </div>
@@ -99,10 +116,12 @@ class Header extends Component {
                                 <div className="menuList">Create Business Account
                                 </div>
                             </a>
-                            <a href="#" className="nav-link">
-                                <div className="menuList">Add your restaurant
-                                </div>
-                            </a>
+                            <NavLink className="nav-link menuList"
+                                    to={{
+                                    pathname: "/addRestaurant",
+                                    }}>
+                                Add Restaurant
+                            </NavLink>
                             <a href="#" className="nav-link">
                                 <div className="menuList">Sign up to deliver
                                 </div>

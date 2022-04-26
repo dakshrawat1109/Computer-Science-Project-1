@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from "react";
-import { hashHistory } from "react-router";
 import {
 	Typography,
     Paper,
@@ -11,22 +10,39 @@ import {
 import axios from "axios";
 import './login.css';
 
+const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+);
+
 class Login extends Component{
+
+    constructor(props) {
+        super(props); 
+        console.log(props); 
+        this.onLogin = this.onLogin.bind(this);
+    }
+    
     state = {
         loginDetails:{
             userName : "",
             password : "",
         },
-        redirect: false,
+        errors: {
+            userName: "",
+            password: "",
+        },
     };
-    onLogin = () => {
+    onLogin = (event) => {
         var loginDetails = this.state.loginDetails;
         axios
         .post(" http://localhost:8080/login", loginDetails
         )
         .then((response,body) => {
+            this.setState({
+                redirect : true,
+            });
             if(response.status===200 && response.data === "Login Successful"){
-                this.props.router.push('/');
+                this.props.history.push("/");
             }
             console.log(response);
         })
@@ -42,6 +58,11 @@ class Login extends Component{
     changeHandlerUserName = (event) => {
 		event.persist();
 
+        let errors = this.state.errors;
+
+        errors.userName =
+        event.target.value.length < 5 ? "User Name must be at least 5 characters long!" : "";
+
 		this.setState((prevState) => ({
 			loginDetails: {...prevState.loginDetails, userName: event.target.value},
 		}));
@@ -49,6 +70,11 @@ class Login extends Component{
     changeHandlerPassword = (event) => {
 		event.persist();
 
+        let errors = this.state.errors;
+
+        errors.password =
+        event.target.value.length < 8 ? "Password must be at least 8 characters long!" : "";
+    
 		this.setState((prevState) => ({
 			loginDetails: {...prevState.loginDetails, password: event.target.value},
 		}));
@@ -73,6 +99,9 @@ class Login extends Component{
                                                 fullWidth
                                                 onChange={(value) => this.changeHandlerUserName(value)}
                                             />
+                                    {this.state.errors.userName.length > 0 && (
+                                        <span className="error">{this.state.errors.userName}</span>
+                                    )}
                                     </Grid>
                                     <Grid item>
                                         <TextField
@@ -83,6 +112,9 @@ class Login extends Component{
                                                 fullWidth
                                                 onChange={(value) => this.changeHandlerPassword(value)}
                                             />
+                                    {this.state.errors.password.length > 0 && (
+                                        <span className="error">{this.state.errors.password}</span>
+                                    )}
                                     </Grid>
                                     <Grid item>
                                         <Button
@@ -90,7 +122,7 @@ class Login extends Component{
                                                 size="large"
                                                 color="primary"
                                                 fullWidth
-                                                onClick={this.onLogin}>
+                                                onClick={e=>this.onLogin(e)}>
                                                 Submit
                                         </Button>
                                     </Grid>
